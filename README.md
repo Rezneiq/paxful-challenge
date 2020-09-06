@@ -13,8 +13,7 @@ This API provides basic functionality for managing users, BTC wallets and transa
   * Data params
     ```
     username=[string]
-    password=[string]
-  
+    password=[string]  
   * Success Response
     
     The response is an object containing the user's username and a generated Token for authentication.
