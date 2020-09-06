@@ -10,6 +10,11 @@ This API provides basic functionality for managing users, BTC wallets and transa
   * Method
 
     ```POST```
+  * Data params
+    ```
+    username=[string]
+    password=[string]
+  
   * Success Response
     
     The response is an object containing the user's username and a generated Token for authentication.
@@ -19,7 +24,19 @@ This API provides basic functionality for managing users, BTC wallets and transa
         "username": "ryan"
       },
       "token": "a040afe62c075d30d42ae9efbff84cdab9d7b114"
-    }´´´
+    }
+  * Error Response
+
+    The request validates that a user uses a unique username and the password field is not blank.
+    ```
+    {
+      "username": [
+        "A user with that username already exists."
+      ],
+      "password": [
+        "This field may not be blank."
+      ]
+    }
 ### Wallets
   * URL
 
