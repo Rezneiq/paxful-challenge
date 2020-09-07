@@ -2,6 +2,15 @@
 
 This API provides basic functionality for managing users, BTC wallets and transactions between them.
 
+## Installation
+
+In order to have the project up and running, clone the repo and on it's root path, run the following command:
+
+```docker-compose up```
+
+Disclaimer: Sometimes the containers are not correctly loaded due to the mysql server is not runnng yet. Please, run the command again and the migrations and django app should run without problems.
+
+
 ## API Docs
 ### Users
   * URL
