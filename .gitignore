@@ -6,6 +6,7 @@
 
 # Enviroment
 env/
+mysql/
 # Compiled Java class files
 *.class
 
