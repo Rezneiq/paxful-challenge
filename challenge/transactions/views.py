@@ -22,6 +22,10 @@ class TransactionsApiView(APIView):
         if serializer.is_valid():
             from_wallet = get_wallet_instance(serializer.validated_data.get('from_wallet'))
             to_wallet = get_wallet_instance(serializer.validated_data.get('to_wallet'))
+            if from_wallet.id == to_wallet.id:
+                return Response({
+                    'error': "Sender and receiver wallet must be different."
+                }, status=status.HTTP_400_BAD_REQUEST)
             amount = serializer.validated_data.get('amount')
             if not wallet_has_enough_amount(from_wallet, amount):
                 return Response({
