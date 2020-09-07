@@ -262,5 +262,5 @@ Disclaimer: Sometimes the containers are not correctly loaded due to the mysql s
       "total_profit": {
         "total_profit_btc": 0.0075,
         "total_profit_usd": 76.28145
+      }
     }
-}
