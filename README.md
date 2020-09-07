@@ -243,3 +243,24 @@ Disclaimer: Sometimes the containers are not correctly loaded due to the mysql s
     {
       "error": "The wallet dosn't have enought money."
     }
+## Statistics
+  * Method
+    
+    ```GET```
+
+  * URL
+    
+    ```api/statistics```
+  
+  * Success Response
+  
+    This endpoint is for admin users only, but in order to keep things simple, I just made it accessible for authenticated users. This will return the amount of transactions made by all users and the profit that the company gain with them.
+    
+    ```
+    {
+      "total_transactions": 1,
+      "total_profit": {
+        "total_profit_btc": 0.0075,
+        "total_profit_usd": 76.28145
+    }
+}
