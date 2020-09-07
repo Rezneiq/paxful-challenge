@@ -10,7 +10,7 @@ from utils.conversor import RatesConversor
 
 class StatisticApiView(APIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         queryset = Transaction.objects.all()
