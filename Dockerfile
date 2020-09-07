@@ -1,12 +1,11 @@
 FROM python:3
 
-# USER app
+FROM python:3
+USER app
 ENV PYTHONUNBUFFERED 1
-# RUN mkdir /db
-#RUN chown app:app -R /db
-
 RUN mkdir /code
+RUN chown app:app -R /code
+
 WORKDIR /code
-ADD requirements.txt /code/
+COPY . /code/
 RUN pip install -r requirements.txt
-ADD . /code/

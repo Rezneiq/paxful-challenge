@@ -18,9 +18,15 @@ class WalletTransactionsApiView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TransactionSerializer
-    
+
     def get(self, request, address):
-        wallet = Wallet.objects.get(address=address)
+        try:
+            wallet = Wallet.objects.get(address=address)
+            serializer = WalletSerializer(wallet)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Wallet.DoesNotExist:
+            return Response({'error': 'Wallet not found.'},
+                            status=status.HTTP_404_NOT_FOUND)
         queryset = Transaction.objects.filter(from_wallet=wallet.id)
         serializer = TransactionSerializer(queryset, many=True)
         return Response(serializer.data)
@@ -32,21 +38,20 @@ class WalletApiView(APIView):
     serializer_class = WalletSerializer
 
     def get(self, request, address=None):
-        if address:
+        try:
             wallet = Wallet.objects.get(address=address)
-            if wallet:
-                serializer = WalletSerializer(wallet)
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            return Response({
-                'error': 'Wallet not found.'
-            }, status=status.HTTP_404_NOT_FOUND)
+            serializer = WalletSerializer(wallet)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Wallet.DoesNotExist:
+            return Response({'error': 'Wallet not found.'},
+                            status=status.HTTP_404_NOT_FOUND)
 
 
 class WalletsApiView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = WalletSerializer
-    
+
     def get(self, request, format=None):
         queryset = Wallet.objects.filter(owner=request.user)
         serializer = WalletSerializer(queryset, many=True)
